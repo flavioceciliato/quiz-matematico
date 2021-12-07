@@ -16,14 +16,14 @@ class _HomeState extends State<Home> {
 
   void _perguntaRespondida(bool pontosResposta) {
     setState(() {
-      // resposta foi selecionada
+      //Resposta foi selecionada
       respostaFoiSelecionada = true;
-      // verifique se a resposta estava correta
+      //Verifique se a resposta estava correta
       if (pontosResposta) {
         _totalPontos++;
         respostaCorretaSelecionada = true;
       }
-      // Adiciona no topo V ou X caso acerte a questão ou erre
+      //Adiciona no topo V ou X caso acerte a questão ou erre
       _listaPontos.add(
         pontosResposta
             ? Icon(
@@ -35,7 +35,7 @@ class _HomeState extends State<Home> {
                 color: Colors.red,
               ),
       );
-      //quando o quiz termina
+      //Quando o quiz termina
       if (_questaoIndex + 1 == _questoes.length) {
         fimDoQuiz = true;
       }
@@ -48,7 +48,7 @@ class _HomeState extends State<Home> {
       respostaFoiSelecionada = false;
       respostaCorretaSelecionada = false;
     });
-    // o que acontece no final do quiz
+    //O que acontece no final do quiz
     if (_questaoIndex >= _questoes.length) {
       _resetarQuiz();
     }
@@ -67,6 +67,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.teal[300],
         title: Text(
           'Quiz Matemático',
           style: TextStyle(
@@ -96,7 +97,7 @@ class _HomeState extends State<Home> {
               ],
             ),
             Container(
-              //fundo pergunta
+              //Fundo pergunta
               width: double.infinity,
               height: 130.0,
               margin: EdgeInsets.only(bottom: 10.0, left: 30.0, right: 30.0),
@@ -123,26 +124,30 @@ class _HomeState extends State<Home> {
               (resposta) => Resposta(
                 textoResposta: resposta['textoResposta'],
                 corResposta: respostaFoiSelecionada
-                    // cor de fundo das alternativas
+                    //Cor de fundo das alternativas
                     ? resposta['pontos']
                         ? Colors.green
                         : Colors.red
                     : Colors.white,
                 respostaTap: () {
-                  // se a resposta já foi selecionada, então nada acontece no clique
+                  //Se a resposta já foi selecionada, então nada acontece no clique
                   if (respostaFoiSelecionada) {
                     return;
                   }
-                  //a resposta está sendo selecionada
+                  //Resposta está sendo selecionada
                   _perguntaRespondida(resposta['pontos']);
                 },
               ),
             ),
             SizedBox(height: 20.0),
-            //BOTÃO REINICAR/PRÓXIMO
+            //Botão Reiniciar/Próximo
             ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  minimumSize: Size(40.0, 40.0), primary: Colors.black),
+              style:
+                  (fimDoQuiz //Mudando a cor do botão caso tenha acabado o game
+                      ? ElevatedButton.styleFrom(
+                          minimumSize: Size(40.0, 40.0), primary: Colors.black)
+                      : ElevatedButton.styleFrom(
+                          minimumSize: Size(40.0, 40.0), primary: Colors.red)),
               onPressed: () {
                 if (!respostaFoiSelecionada) {
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -191,13 +196,13 @@ class _HomeState extends State<Home> {
             if (fimDoQuiz)
               Container(
                 height: 106,
-                width: 380,
-                //width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.deepOrange,
-                  border: Border.all(color: Colors.black),
-                  borderRadius: BorderRadius.circular(10),
-                ),
+                //width: 380,
+                width: double.infinity,
+                //decoration: BoxDecoration(
+                color: Colors.deepOrange,
+                //border: Border.all(color: Colors.black),
+                //borderRadius: BorderRadius.circular(10),
+                //),
                 child: Center(
                   child: Text(
                     _totalPontos >= 1
@@ -221,7 +226,7 @@ class _HomeState extends State<Home> {
 }
 
 final _questoes = const [
-  // Adicionar 10 questões ao total
+  //Adicionar 10 questões ao total
   {
     'questao': 'Quanto é 2x2?',
     'respostas': [
