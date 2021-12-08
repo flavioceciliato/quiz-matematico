@@ -196,13 +196,13 @@ class _HomeState extends State<Home> {
             if (fimDoQuiz)
               Container(
                 height: 106,
-                //width: 380,
-                width: double.infinity,
-                //decoration: BoxDecoration(
-                color: Colors.deepOrange,
-                //border: Border.all(color: Colors.black),
-                //borderRadius: BorderRadius.circular(10),
-                //),
+                width: 380,
+                //width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.deepOrange,
+                  border: Border.all(color: Colors.black),
+                  borderRadius: BorderRadius.circular(10),
+                ),
                 child: Center(
                   child: Text(
                     _totalPontos >= 1
