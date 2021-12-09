@@ -151,8 +151,7 @@ class _HomeState extends State<Home> {
               onPressed: () {
                 if (!respostaFoiSelecionada) {
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: Text(
-                        '         Escolha sua resposta antes de continuar'),
+                    content: Text('Escolha sua resposta antes de continuar'),
                   ));
                   return;
                 }
